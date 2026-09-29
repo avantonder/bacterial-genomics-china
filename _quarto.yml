@@ -34,30 +34,20 @@ metadata-files:
 book:
   search:
     location: sidebar
-  favicon: "_extensions/cambiotraining/courseformat/img/university-of-cambridge-favicon.ico"
+  favicon: ""
   bread-crumbs: false
   page-navigation: true
   page-footer: 
     center: |
       Licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 
-      ![](https://creativecommons.org/images/deed/cc_icon_black_x2.png){width=25px} 
-      Cambridge Research Informatics Training
+      ![](https://creativecommons.org/images/deed/cc_icon_black_x2.png){width=25px}
   navbar:
     pinned: true
-    logo: "_extensions/cambiotraining/courseformat/img/university_crest_reversed.png"
+    logo: ""
     left:
       - text: "Slides"
         href: https://docs.google.com/presentation/d/1ynCdmlIAT68uVEPxfCM1vHXdQxMYlpVNJo7aeJGMsDY/edit?usp=sharing
-    right:
-      - text: "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}"
-        href: https://github.com/cambiotraining/bacterial-genomics
-      - text: "{{< iconify fa6-brands bluesky size=lg title='CRIT Bluesky' >}}"
-        href: https://bsky.app/profile/bioinfocambs.bsky.social
-      - text: "{{< iconify fa6-brands mastodon size=lg title='CRIT Mastodon' >}}"
-        href: https://genomic.social/@BioInfoCambs
-      - text: "{{< iconify mdi web size=lg title='CRIT Website' >}}"
-        href: https://bioinfotraining.bio.cam.ac.uk/
-    title: "Working with Bacterial Genomes"
+    title: "Bacterial Genomics and Metagenomics"
   chapters:
     - part: "Welcome"
       chapters:

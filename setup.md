@@ -131,12 +131,6 @@ mamba create -n bakta bakta
 mamba create -n krona krona
 ```
 
-#### Gubbins
-
-```bash
-mamba create -n gubbins gubbins
-```
-
 #### IQ-Tree
 
 ```bash
@@ -187,12 +181,6 @@ mamba create -n pairsnp pairsnp
 mamba create -n panaroo python=3.9 panaroo>=1.3 snp-sites
 ```
 
-#### PopPUNK
-
-```bash
-mamba create -n poppunk python=3.10 poppunk
-```
-
 #### remove_blocks_from_aln
 
 ```bash
@@ -212,40 +200,12 @@ mamba create -n seqtk seqtk pandas
 mamba create -n tb-profiler tb-profiler pandas
 ```
 
-#### TreeTime
-
 ```bash
-mamba create -n treetime treetime seqkit biopython
-```
+mamba create -n alignment fastqc=0.12.1 cutadapt=4.9 trimmomatic=0.39 bowtie2=2.5.4 samtools=1.21 metaphlan=4.1.1 mash=2.3 multiqc==1.25.1
 
-#### MOB-suite & Pling & mashtree
+mamba create -n assembly fastqc=0.12.1 cutadapt=4.9 trimmomatic=0.39 bowtie2=2.5.4 samtools=1.21 spades=4.0.0 bbmap=39.10 flash=1.2.11 multiqc==1.25.1
 
-```bash
-mamba create -n mob_suite mob_suite
-mamba create -n pling pling
-mamba create -n mashtree mashtree
-```
-
-#### Reverse vaccinology
-
-```bash
-mamba create -n reverse-vaccinology bakta diamond cd-hit pandas
-```
-
-#### PSORTb
-
-Running PSORTb requires Apptainer and a wrapper script.  The container is available from our Dropbox.
-
-```bash
-wget -O psortb.sif "https://www.dropbox.com/ #add link here"
-wget https://raw.githubusercontent.com/brinkmanlab/psortb_commandline_docker/master/psortb_app
-chmod +x psortb_app
-```
-
-#### Accessory genome vaccine workflow
-
-```bash
-micromamba create -n accessory-vaccinology -c bioconda -c conda-forge mash pyseer python=3.6 openssl=1.0
+mamba create -n mags maxbin2=2.2.7 prokka=1.14.6 gtdbtk=2.4.0 abricate=1.0.1 checkm-genome=1.2.5
 ```
 
 ### R and RStudio
@@ -273,9 +233,9 @@ install.packages("BiocManager")
 BiocManager::install(c("data.table", "ggraph", "igraph", 
                        "tidygraph", "tidyverse", "ape", 
                        "phytools", "ggnewscale", "ggtree", 
-                       "janitor"))
+                       "janitor", "dada2","phyloseq","microbiome",
+                       "Biostrings","readxl", "factoextra"))
 ```
-
 
 ### Singularity
 
@@ -342,7 +302,6 @@ You can follow the same instructions as for "Ubuntu".
 The data used in these materials are provided as archive files:
 
 - `bact-data.tar` contains the main course data.
-- `bact-outbreak.tar` contains the data for the final capstone exercise.
 - `bact-databases.tar` contains a copy of the databases used by some of the programs. **Note:** we do not recommend that you use this copy in your own work, always download the latest database versions following the instructions given below. 
 
 You can download these files from the link below and extract the files from the archive into a directory of your choice.
@@ -362,10 +321,6 @@ mkdir $datadir
 wget -O $datadir/bact-data.tar "https://www.dropbox.com/scl/fi/s88w1cdiqtygnepbff858/bact-data.tar?rlkey=xifz132zgjt7hj8oj38ef9o00&st=izvooc62&dl=1"
 tar -xvf $datadir/bact-data.tar -C $datadir
 rm $datadir/bact-data.tar
-
-wget -O $datadir/bact-outbreak.tar "https://www.dropbox.com/scl/fi/tio9qtcuwvv86nwfckezl/bact-outbreak.tar?rlkey=khcb6nsvj3mpsvfbsv97q467e&st=r9vj0dm9&dl=1"
-tar -xvf $datadir/bact-outbreak.tar -C $datadir
-rm $datadir/bact-outbreak.tar
 
 wget -O $datadir/bact-databases.tar "https://www.dropbox.com/scl/fi/ljwypmwetfu6o6pe3fwff/bact-databases.tar?rlkey=yyg3q7w0s47ildzad5sfftr1x&st=y381n5nj&dl=1"
 tar -xvf $datadir/bact-databases.tar -C $datadir
@@ -423,6 +378,46 @@ mamba activate bakta
 amrfinder_update --force_update --database bakta_light_20240119/amrfinderplus-db/
 ```
 
+#### CheckM (1.5 GiB)
+
+First activate the environment: 
+
+```bash
+mamba activate mags
+```
+
+The [CheckM documentation](https://github.com/Ecogenomics/CheckM/wiki/Installation#required-reference-data) gives the link to its database file. 
+
+We will download this databases to a directory in our home called `~/databases/checkmdb_20150116`, but you can change this if you prefer to save it elsewhere. 
+We use the date of the latest version of the database in the directory name for reference.
+
+```bash
+# create variable with output directory name for our database
+# change this to be a directory of your choice
+checkm_db="$HOME/databases/checkmdb_20150116"
+mkdir -p $checkm_db
+```
+
+Download and decompress the file:
+
+```bash
+wget -O checkm_db.tar.gz https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+tar -xzvf checkm_db.tar.gz -C $checkm_db
+rm checkm_db.tar.gz
+```
+
+After downloading, you need to run the following command to configure CheckM:
+
+```bash
+checkm data setRoot $checkm_db
+```
+
+Alternatively, you can set an environment variable specifically in your Conda/Mamba environment: 
+
+```bash
+conda env config vars set CHECKM_DATA_PATH="$checkm_db" -n mags
+```
+
 #### CheckM2
 
 CheckM2 also provides a command `checkm2 database --download` to download the latest version of the database [from Zenodo](https://zenodo.org/records/5571251).
@@ -434,69 +429,10 @@ mv CheckM2_database checkm2_v2_20210323
 rm checkm2_database.tar.gz CONTENTS.json
 ```
 
-#### GPSCs
-
-```bash
-wget https://gps-project.cog.sanger.ac.uk/GPS_v8_ref.tar.gz
-mkdir poppunk
-tar -xzvf GPS_v8_ref.tar.gz -C poppunk
-rm GPS_v8_ref.tar.gz
-
-wget -O poppunk/GPS_v8_external_clusters.csv https://gps-project.cog.sanger.ac.uk/GPS_v8_external_clusters.csv
-```
-
 #### Krona
 
 ```bash
 # make sure to activate krona environment
 mamba activate krona
 ktUpdateTaxonomy.sh krona/
-```
-
-#### MOB-suite
-
-MOB-suite has a generic database available, which can be downloaded using:
-
-```bash
-mamba activate mob_suite
-mob_init -d mob_suite -v
-```
-
-The MOB-suite developers also provide a [collection of Enterobacteriacea genomes](https://github.com/phac-nml/mob-suite?tab=readme-ov-file#using-mob-recon-to-reconstruct-plasmids-from-draft-assemblies) for organisms such as E. coli. 
-These can be downloaded separately from Zenodo, like so:
-
-```bash
-wget -O mobsuite.zip https://zenodo.org/api/records/3785351/files-archive
-unzip mobsuite.zip -d mob_suite
-rm mobsuite.zip
-```
-
-#### SWISS-PROT and Human proteome
-
-```bash
-# download Swiss-Prot and Human Proteome from UniProt
-wget "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz"
-wget "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/reference_proteomes/Eukaryota/UP000005640/UP000005640_9606.fasta.gz"
-gunzip *.gz
-# make sure to activate reverse-vaccinology environment
-mamba activate reverse-vaccinology
-# create DIAMOND-formatted databases
-diamond makedb --in uniprot_sprot.fasta -d swissprot
-diamond makedb --in UP000005640_9606.fasta -d human_proteome
-```
-
-
-#### CARD
-
-This database is used by the Nextflow workflow `nf-core/funcscan`. 
-The database is downloaded by the workflow itself, but if you run this workflow regularly, it might be best to download it once, to save time and bandwidth.
-
-Instructions for this are given in the [workflow documentation page](https://nf-co.re/funcscan/usage#rgi). 
-Here is how we did it for our workshop:
-
-```bash
-mkdir card
-wget -O card.tar.bz2 https://card.mcmaster.ca/latest/data
-tar -xjvf card.tar.bz2 -C card
-rm card.tar.bz2
 ```

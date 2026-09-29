@@ -1,7 +1,7 @@
 book:
   chapters:
     # Edit this to include links to markdowns, which may be organised in different parts
-    - part: "Introduction"
+    - part: "Introduction to bacterial genomics"
       chapters:
         - materials/01-know_your_bug.md
         - materials/02-preparing_data.md
@@ -23,11 +23,6 @@ book:
         - materials/12-phylogenetics.md
         - materials/13-tb_profiler.md
         - materials/14-tree_visualization.md
-        - materials/15-group_exercise_1.md
-        - materials/16-dating.md
-    - part: "Transmission"
-      chapters: 
-        - materials/17-transmission.md
     - part: "De-novo assembly and annotation"
       chapters: 
         - materials/18-intro_staph.md
@@ -35,39 +30,21 @@ book:
         - materials/20-assemblebac.md
         - materials/21-assembly_qc.md
         - materials/22-strain_typing.md
-    - part: "Pan-genome analysis"
+    - part: "Introduction to metagenomics"
       chapters:
-        - materials/23-pan_genomes.md
-        - materials/24-panaroo.md
-        - materials/25-pathogenwatch.md
-        - materials/26-tree_visualization.md
-    - part: "Recombination"
+        - materials/11-intro_pres.md
+        - materials/13-16S_seq.md
+    - part: "QC and alignment-based metagenomics"
       chapters: 
-        - materials/27-intro_pneumo.md
-        - materials/28-run_bactmap.md
-        - materials/29-recombination.md
-        - materials/30-poppunk.md
-        - materials/31-pathogenwatch.md
-        - materials/32-tree_visualization.md
-    - part: "Vaccines"
+        - materials/21-pres.md
+        - materials/22-pract.md
+    - part: "Whole genome alignment based methods"
       chapters: 
-        - materials/34-reverse_vaccinology.md
-        - materials/34-pan-genome-vaccinology.md
-    - part: "Antimicrobial Resistance"
+        - materials/24-pract.md
+        - materials/23-pract.md
+    - part: "de novo and Hi-C metagenomics"
       chapters:
-        - materials/33-intro_amr.md
-        - materials/34-command_line_amr.md
-        - materials/35-funcscan_pathogenwatch.md
-    - part: "Plasmid analysis"
-      chapters:
-        - materials/36-working_ont.md
-        - materials/37-plasmids.md
-    - part: "Outbreak!"
-      chapters:
-        - materials/38-outbreak.md
-    - part: "Reporting"
-      chapters:
-        - materials/39-group_exercise_2.md
+        - materials/31-pres.md
+        - materials/32-pract.md
   appendices: 
     - materials/appendices/01-file_formats.md
-    - materials/appendices/02-course_software.md

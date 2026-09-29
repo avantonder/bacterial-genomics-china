@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Working with Bacterial Genomes
+title: Bacterial Genomics and Metagenomics
 message: >-
   You may cite these materials using the metadata in this
   file. Please cite our materials if you publish materials
@@ -13,19 +13,16 @@ authors:
   - given-names: Andries
     family-names: van Tonder
     orcid: 'https://orcid.org/0000-0002-4380-5250'
-    affiliation: Department of Veterinary Medicine, University of Cambridge
-    alias: 'conceptualisation; primary author; data curation; coding; software'
-  - given-names: Hugo
-    family-names: Tavares
     affiliation: Cambridge Centre for Research Informatics Training
-    orcid: 'https://orcid.org/0000-0001-9373-2726'
     alias: 'editor; software; data curation'
-  - given-names: Bajuna
-    family-names: Salehe
-    affiliation: Cambridge Centre for Research Informatics Training
-    alias: 'software'
-repository-code: 'https://github.com/cambiotraining/bacterial-genomics'
-url: 'https://cambiotraining.github.io/bacterial-genomics/'
+  - given-names: Lajos
+    family-names: Kalmar
+    affiliation: MRC Toxicology, University of Cambridge
+    orcid: 'https://orcid.org/0000-0003-3691-8350'
+    alias: 'editor; software; data curation'
+
+repository-code: 'https://github.com/avantonder/bacterial-genomics-china'
+url: 'https://avantonder.github.io/bacterial-genomics-china/'
 license: CC-BY-4.0
 commit: TODO
-date-released: '2024-07-22'
+date-released: '2026-09-30'
