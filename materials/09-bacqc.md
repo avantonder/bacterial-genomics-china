@@ -74,8 +74,8 @@ nextflow run avantonder/bacQC \
   -profile singularity \
   --input SAMPLESHEET \
   --outdir results/bacqc \
-  --kraken2db databases/k2_standard_08gb_20240605 \
-  --kronadb databases/krona/taxonomy.tab \
+  --kraken2db /home/bacgeno/databases/k2_standard_08gb_20240605 \
+  --kronadb /home/bacgeno/databases/krona/taxonomy.tab \
   --genome_size GENOME_SIZE 
 ```
 
@@ -113,8 +113,8 @@ nextflow run avantonder/bacQC \
   -profile singularity \
   --input samplesheet.csv \
   --outdir results/bacqc \
-  --kraken2db databases/k2_standard_08gb_20240605 \
-  --kronadb databases/krona/taxonomy.tab \
+  --kraken2db /home/bacgeno/databases/k2_standard_08gb_20240605 \
+  --kronadb /home/bacgeno/databases/krona/taxonomy.tab \
   --genome_size 4300000
 ```
 

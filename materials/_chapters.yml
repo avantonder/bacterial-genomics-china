@@ -46,5 +46,6 @@ book:
       chapters:
         - materials/31-pres.md
         - materials/32-pract.md
+        - materials/42-pract.md
   appendices: 
     - materials/appendices/01-file_formats.md
