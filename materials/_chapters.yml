@@ -30,7 +30,7 @@ book:
         - materials/20-assemblebac.md
         - materials/21-assembly_qc.md
         - materials/22-strain_typing.md
-        - materials/23-pan-genomes.md
+        - materials/23-pan_genomes.md
         - materials/24-panaroo.md
     - part: "Introduction to metagenomics"
       chapters:
